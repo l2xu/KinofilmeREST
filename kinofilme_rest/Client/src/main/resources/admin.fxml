@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.medieninformatik.client.ClientControllerAdmin">
+   <children>
+      <Text layoutX="407.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin User" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font></Text>
+      <ListView fx:id="movielist" layoutX="36.0" layoutY="130.0" prefHeight="610.0" prefWidth="945.0" />
+      <ChoiceBox fx:id="sortBy" layoutX="36.0" layoutY="97.0" prefWidth="150.0" value="keine Sortierung">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="keine Sortierung" />
+               <String fx:value="Titel" />
+               <String fx:value="Regisseur" />
+               <String fx:value="Bewertung" />
+               <String fx:value="Genre" />
+               <String fx:value="Laenge" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+
+      <ChoiceBox fx:id="filterBy" layoutX="207.0" layoutY="97.0" prefWidth="150.0" value="kein Filter">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="kein Filter" />
+
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+
+      <Button fx:id="search" layoutX="402.0" layoutY="97.0" mnemonicParsing="false" onAction="#updateMovieList" text="Search" />
+      <Button fx:id="delete" layoutX="36.0" layoutY="755.0" mnemonicParsing="false" onAction="#deleteMovie" style="-fx-background-color: #ff5226;" text="DELETE" />
+      <Button fx:id="edit" layoutX="104.0" layoutY="755.0" mnemonicParsing="false" onAction="#openEditMovie" style="-fx-background-color: #ffff33;" text="EDIT" />
+      <Button fx:id="add" layoutX="157.0" layoutY="755.0" mnemonicParsing="false" onAction="#openAddMovie" style="-fx-background-color: #6cf595;" text="ADD" />
+      <Button fx:id="toLoginButton" layoutX="864.0" layoutY="97.0" mnemonicParsing="false" onAction="#backToLogin" text="Benutzer Wechseln" />
+      <AnchorPane fx:id="addMovieView" layoutY="80.0" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;" visible="false">
+         <children>
+            <TextField fx:id="addMovieTitel" layoutX="149.0" layoutY="209.0" prefHeight="30.0" prefWidth="289.0" promptText="Matrix 2">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="addMovieRegi" layoutX="149.0" layoutY="297.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="addMovieBewertung" layoutX="149.0" layoutY="380.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="addMovieGenre" layoutX="149.0" layoutY="463.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="addMovieLaenge" layoutX="149.0" layoutY="536.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Text layoutX="149.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titel">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Text>
+            <Text layoutX="149.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regisseur">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Text>
+            <Text layoutX="149.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bewertung">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Text>
+            <Text layoutX="149.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Text>
+            <Text layoutX="149.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Länge">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Text>
+            <Button fx:id="addMovieButton" layoutX="637.0" layoutY="253.0" mnemonicParsing="false" onAction="#addMovieToDB" prefHeight="222.0" prefWidth="230.0" text="Hinzufügen" />
+            <Text layoutX="149.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neuen Film zur Datenbank hinzufügen">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="addMovieBack" layoutX="149.0" layoutY="644.0" mnemonicParsing="false" onAction="#addMovieBack" text="Vorgang Abbrechen" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="editMovieView" layoutY="80.0" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: yellow;" visible="false">
+         <children>
+            <TextField fx:id="editMovieTitel" layoutX="149.0" layoutY="209.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="editMovieRegi" layoutX="149.0" layoutY="297.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="editMovieBewertung" layoutX="149.0" layoutY="380.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="editMovieGenre" layoutX="149.0" layoutY="463.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="editMovieLaenge" layoutX="149.0" layoutY="536.0" prefHeight="30.0" prefWidth="289.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="149.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titel">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="149.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regisseur">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="149.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bewertung">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="149.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="149.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Länge">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="637.0" layoutY="253.0" mnemonicParsing="false" onAction="#editMovieToDB" prefHeight="222.0" prefWidth="230.0" text="Bearbeiten" />
+            <Text layoutX="149.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Film aus der Datenbank bearbeiten">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="addMovieBackButton" layoutX="149.0" layoutY="628.0" mnemonicParsing="false" onAction="#addMovieBack" text="Vorgang Abbrechen" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

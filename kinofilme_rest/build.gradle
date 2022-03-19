@@ -1,0 +1,54 @@
+
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+    apply plugin: 'org.openjfx.javafxplugin'
+
+    group 'de.medieninformatik'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    ext {
+        junitVersion = '5.8.1'
+        jerseyVersion = '3.0.3'
+        grizzlyVersion = '3.0.1'
+        restVersion = '3.0.0'
+        jaxbVersion = '3.0.1'
+    }
+
+    run {
+        standardInput = System.in
+        standardOutput = System.out
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        implementation 'com.google.code.gson:gson:2.8.9'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    javafx {
+        version = "17"
+        modules = [ 'javafx.controls', 'javafx.fxml' ]
+    }
+
+}

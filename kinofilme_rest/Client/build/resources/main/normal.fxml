@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.medieninformatik.client.ClientControllerNormal">
+   <children>
+      <Text layoutX="475.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Normal User" />
+      <ListView fx:id="movielist" layoutX="36.0" layoutY="130.0" prefHeight="610.0" prefWidth="945.0" />
+      <ChoiceBox fx:id="sortBy" layoutX="36.0" layoutY="79.0" prefWidth="150.0" value="keine Sortierung">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="keine Sortierung" />
+               <String fx:value="Titel" />
+               <String fx:value="Regisseur" />
+               <String fx:value="Bewertung" />
+               <String fx:value="Genre" />
+               <String fx:value="Laenge" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Button fx:id="toLoginButton" layoutX="864.0" layoutY="79.0" mnemonicParsing="false" onAction="#backToLogin" text="Benutzer Wechseln" />
+
+      <ChoiceBox fx:id="filterBy" layoutX="207.0" layoutY="79.0" prefWidth="150.0" value="kein Filter">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="kein Filter" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+
+      <Button fx:id="search" layoutX="402.0" layoutY="79.0" mnemonicParsing="false" onAction="#updateMovieList" text="Search" />
+   </children>
+</AnchorPane>

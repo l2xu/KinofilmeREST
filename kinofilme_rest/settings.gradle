@@ -1,0 +1,5 @@
+rootProject.name = 'Programmierung_03_Abgabe'
+include 'Client'
+include 'Server'
+include 'Common'
+
